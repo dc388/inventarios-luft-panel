@@ -1,0 +1,26 @@
+{
+  "name": "Inventarios Luft PVC",
+  "short_name": "Luft PVC",
+  "description": "Control de inventario de LUFT, division PVC. Funciona sin conexion.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A63D2",
+  "theme_color": "#0A63D2",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

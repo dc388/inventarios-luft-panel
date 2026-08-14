@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inventarios Luft · Administración</title>
     <style>
-      /* Paleta: negro de la marca, azul PVC como acento, madera para
-         carpinteria. El rojo y el verde SOLO significan rechazar y aprobar;
-         si aparecieran en otro sitio dejarian de querer decir eso. */
+      /* Paleta: azul de la marca como acento, madera para carpinteria. El rojo
+         y el verde SOLO significan rechazar y aprobar; si aparecieran en otro
+         sitio dejarian de querer decir eso.
+
+         Los mismos valores que el tema de las aplicaciones del telefono. Uno
+         solo, en los dos sitios: quien pasa del telefono al panel no deberia
+         sentir que cambia de sistema. */
       :root {
         color-scheme: light;
-        --marca: #1e5aa8;
-        --marca-oscuro: #154480;
+        --marca: #0a63d2;
+        --marca-oscuro: #0846a0;
+        --marca-suave: #e8f1fe;
         --madera: #8a5a2b;
-        --tinta: #16202b;
-        --tinta-tenue: #5a6773;
-        --papel: #f5f6f8;
+        --tinta: #11151a;
+        --tinta-tenue: #565e6b;
+        --tinta-debil: #8b939f;
+        /* Fondo con una pizca de azul, no gris puro: un gris neutro junto a
+           superficies blancas con sombra se lee pardo, no limpio. */
+        --papel: #f2f4f8;
         --superficie: #ffffff;
-        --linea: #dde3ea;
-        --aprobar: #1b7f4f;
-        --rechazar: #b3261e;
-        --aviso-fondo: #fdf3e0;
-        --aviso-linea: #e8c68a;
-        --aviso-texto: #8a5300;
+        /* La linea insinua, no delimita: lo que separa es la profundidad. */
+        --linea: rgba(60, 60, 67, 0.12);
+        --aprobar: #0e7a4a;
+        --rechazar: #c0392b;
+        --aviso-fondo: #fdf4e3;
+        --aviso-linea: rgba(154, 103, 0, 0.22);
+        --aviso-texto: #9a6700;
+        --sombra-suave: 0 4px 14px rgba(11, 18, 32, 0.06);
       }
 
       * { box-sizing: border-box; }
@@ -33,9 +43,22 @@
         margin: 0;
         background: var(--papel);
         color: var(--tinta);
-        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        /* La fuente del sistema primero: en Mac y iPad da San Francisco, que
+           es la letra del lenguaje que estamos hablando. Segoe queda de
+           respaldo para Windows. */
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text",
+          "Segoe UI", system-ui, sans-serif;
         font-size: 15px;
         line-height: 1.5;
+        letter-spacing: -0.006em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Los titulos van apretados: es lo que les da el aire compacto de iOS. */
+      h1, h2, h3 {
+        letter-spacing: -0.022em;
+        text-wrap: balance;
       }
 
       /* Los digitos de las columnas de cantidades tienen que alinearse. */
@@ -44,6 +67,12 @@
       :focus-visible {
         outline: 2px solid var(--marca);
         outline-offset: 2px;
+        border-radius: 8px;
+      }
+
+      /* Quien pidio menos movimiento no deberia recibir ninguno. */
+      @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; animation: none !important; }
       }
     </style>
   </head>
