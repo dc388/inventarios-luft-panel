@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventarios Luft · Administración</title>
+    <style>
+      /* Paleta: negro de la marca, azul PVC como acento, madera para
+         carpinteria. El rojo y el verde SOLO significan rechazar y aprobar;
+         si aparecieran en otro sitio dejarian de querer decir eso. */
+      :root {
+        color-scheme: light;
+        --marca: #1e5aa8;
+        --marca-oscuro: #154480;
+        --madera: #8a5a2b;
+        --tinta: #16202b;
+        --tinta-tenue: #5a6773;
+        --papel: #f5f6f8;
+        --superficie: #ffffff;
+        --linea: #dde3ea;
+        --aprobar: #1b7f4f;
+        --rechazar: #b3261e;
+        --aviso-fondo: #fdf3e0;
+        --aviso-linea: #e8c68a;
+        --aviso-texto: #8a5300;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body, #root { height: 100%; }
+
+      body {
+        margin: 0;
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      /* Los digitos de las columnas de cantidades tienen que alinearse. */
+      .num { font-variant-numeric: tabular-nums; }
+
+      :focus-visible {
+        outline: 2px solid var(--marca);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
