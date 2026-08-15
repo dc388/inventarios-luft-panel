@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar Inventarios Luft</title>
+<style>
+  :root {
+    color-scheme: light;
+    --marca: #0a63d2;
+    --madera: #8a5a2b;
+    --tinta: #11151a;
+    --tinta-tenue: #565e6b;
+    --papel: #f2f4f8;
+    --superficie: #fff;
+    --linea: rgba(60,60,67,.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 20px 48px;
+    background: var(--papel); color: var(--tinta);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55; letter-spacing: -.006em;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 520px; margin: 0 auto; }
+  .marca {
+    font-size: 12px; font-weight: 700; letter-spacing: .09em;
+    color: var(--tinta-tenue); text-align: center;
+  }
+  h1 {
+    font-size: 30px; line-height: 1.15; letter-spacing: -.022em;
+    text-align: center; margin: 4px 0 28px; text-wrap: balance;
+  }
+  .tarjeta {
+    background: var(--superficie); border-radius: 22px; padding: 22px;
+    box-shadow: 0 4px 14px rgba(11,18,32,.06); margin-bottom: 16px;
+  }
+  .quien { font-size: 13px; font-weight: 600; color: var(--tinta-tenue); }
+  .cual { font-size: 21px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 16px; }
+  a.boton {
+    display: block; text-align: center; text-decoration: none;
+    background: var(--marca); color: #fff;
+    border-radius: 16px; padding: 16px; font-size: 17px; font-weight: 600;
+    box-shadow: 0 4px 14px rgba(11,18,32,.10);
+  }
+  a.boton.madera { background: var(--madera); }
+  .peso { font-size: 13px; color: var(--tinta-tenue); text-align: center; margin-top: 10px; }
+  h2 { font-size: 17px; letter-spacing: -.02em; margin: 32px 0 10px; }
+  ol { padding-left: 22px; margin: 0; }
+  li { margin-bottom: 14px; }
+  .nota {
+    background: #fdf4e3; color: #9a6700;
+    border-radius: 16px; padding: 14px 16px; font-size: 14px; margin-top: 8px;
+  }
+  .pie {
+    font-size: 13px; color: var(--tinta-tenue);
+    text-align: center; margin-top: 32px; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="marca">INVENTARIOS LUFT</div>
+  <h1>Instalar la aplicación</h1>
+
+  <div class="tarjeta">
+    <div class="quien">Cancelería</div>
+    <div class="cual">Luft PVC</div>
+    <a class="boton" href="../pvc/app.apk" download>Descargar</a>
+    <div class="peso">39 MB · Android</div>
+  </div>
+
+  <div class="tarjeta">
+    <div class="quien">Carpintería</div>
+    <div class="cual">Luft Wood</div>
+    <a class="boton madera" href="../wood/app.apk" download>Descargar</a>
+    <div class="peso">39 MB · Android</div>
+  </div>
+
+  <h2>Qué va a pasar</h2>
+  <ol>
+    <li>Al tocar <strong>Descargar</strong>, el teléfono avisa de que el archivo
+        «puede ser dañino». <strong>Es normal.</strong> La aplicación es de LUFT,
+        no viene de Play Store. Toca <strong>Descargar de todos modos</strong>.</li>
+    <li>Cuando termine, toca <strong>Abrir</strong>.</li>
+    <li>Android pide permiso para instalar desde esta aplicación. Se lo das
+        <strong>una sola vez</strong>: las siguientes actualizaciones ya no lo piden.</li>
+    <li>Toca <strong>Instalar</strong>. Listo.</li>
+  </ol>
+
+  <div class="nota">
+    <strong>Si tocaste el enlace dentro de WhatsApp y no pasó nada:</strong>
+    el navegador de WhatsApp bloquea estas descargas. Abre el menú de los tres
+    puntos y elige <strong>Abrir en Chrome</strong>.
+  </div>
+
+  <h2>Al abrir la aplicación</h2>
+  <p style="margin:0">
+    Te va a pedir un <strong>PIN de 4 dígitos</strong>. Te lo da tu supervisor
+    cuando te entregue el teléfono — no lo compartas con nadie: todo lo que se
+    registre con él queda a tu nombre.
+  </p>
+
+  <div class="pie">
+    Instala las dos solo si trabajas en las dos divisiones.<br>
+    Cada una lleva su propio inventario.
+  </div>
+</main>
+</body>
+</html>
