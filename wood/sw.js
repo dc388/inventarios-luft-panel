@@ -1,4 +1,4 @@
-const CACHE = 'inventarios-luft-wood-9297d09f711b';
+const CACHE = 'inventarios-luft-wood-dadb890caabd';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.png'];
 
 self.addEventListener('install', function (event) {
