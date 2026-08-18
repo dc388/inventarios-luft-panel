@@ -1,4 +1,4 @@
-const CACHE = 'inventarios-luft-pvc-ddce46637e31';
+const CACHE = 'inventarios-luft-pvc-a89593f4aeb1';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.png'];
 
 self.addEventListener('install', function (event) {
