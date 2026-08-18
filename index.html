@@ -267,6 +267,29 @@
         filter: drop-shadow(0 0 10px rgba(206, 232, 255, 0.34));
       }
 
+      /* La espera. Sin peso propio: son dos elementos y ninguna imagen que
+         no estuviera ya en la hoja. */
+      .arranque {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 18px;
+        padding: 24px;
+      }
+      .arranque-texto {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--tinta-debil);
+        animation: respirar 1.9s ease-in-out infinite;
+      }
+      @keyframes respirar {
+        0%, 100% { opacity: 0.35; }
+        50%      { opacity: 0.9; }
+      }
+
       /* Un hilo de metal, del ancho de un pelo. Es el remate de un mueble
          bueno: no se mira, se nota. */
       .filete-metal {
@@ -384,7 +407,31 @@
     </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script src="app.js?v=df8fbb5751"></script>
+    <!-- ==================================================================
+         LO QUE SE VE MIENTRAS CARGA
+
+         `app.js` pesa cerca de medio mega y es lo que dibuja todo. Hasta que
+         termina de bajar y React monta, este div era el fondo negro y nada
+         mas: en una conexion lenta la pantalla se quedaba muerta varios
+         segundos, sin un solo indicio de que algo estuviera pasando.
+
+         Esto se pinta con el HTML, antes de que exista una linea de
+         JavaScript, y React lo reemplaza al montar. No hay que sincronizarlo
+         con nada: si el panel arranca, desaparece solo.
+         ================================================================== -->
+    <div id="root">
+      <div class="arranque">
+        <span class="firma" style="width: 132px"></span>
+        <span class="arranque-texto">Cargando</span>
+      </div>
+    </div>
+    <noscript>
+      <div class="arranque">
+        <span class="arranque-texto">
+          Este panel necesita JavaScript activado para funcionar.
+        </span>
+      </div>
+    </noscript>
+    <script src="app.js?v=86f8628b4a"></script>
   </body>
 </html>
