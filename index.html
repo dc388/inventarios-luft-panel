@@ -285,6 +285,12 @@
         color: var(--tinta-debil);
         animation: respirar 1.9s ease-in-out infinite;
       }
+      /* El latido del panel. Muy contenido: es un indicio, no una alarma. */
+      @keyframes pulso {
+        0%, 100% { opacity: 1;    transform: scale(1); }
+        50%      { opacity: 0.35; transform: scale(0.82); }
+      }
+
       @keyframes respirar {
         0%, 100% { opacity: 0.35; }
         50%      { opacity: 0.9; }
@@ -432,6 +438,6 @@
         </span>
       </div>
     </noscript>
-    <script src="app.js?v=86f8628b4a"></script>
+    <script src="app.js?v=2182539ed8"></script>
   </body>
 </html>
