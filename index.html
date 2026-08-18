@@ -148,6 +148,11 @@
         --acento: #a8cdf5;
         --acento-suave: rgba(168, 205, 245, 0.13);
       }
+      /* El dia es la sala mas viva de las cuatro: es lo que acaba de pasar. */
+      :root[data-division='pvc'][data-seccion='dia'] {
+        --acento: #7fb6f2;
+        --acento-suave: rgba(127, 182, 242, 0.14);
+      }
 
       /* --- Carpinteria: dorado --- */
       :root[data-division='carpinteria'] {
@@ -170,6 +175,10 @@
       :root[data-division='carpinteria'][data-seccion='productos'] {
         --acento: #e0ce9a;
         --acento-suave: rgba(224, 206, 154, 0.13);
+      }
+      :root[data-division='carpinteria'][data-seccion='dia'] {
+        --acento: #d4b25e;
+        --acento-suave: rgba(212, 178, 94, 0.14);
       }
 
       /* El cambio de sala se hace despacio: si el color saltara de golpe se
@@ -438,6 +447,6 @@
         </span>
       </div>
     </noscript>
-    <script src="app.js?v=1c3efdd93c"></script>
+    <script src="app.js?v=7dd93c1217"></script>
   </body>
 </html>
