@@ -217,9 +217,10 @@
            contraste legible: verificado en las ocho combinaciones, el peor caso
            —cancelaria en salidas— da 3.3:1, que vale para texto grande y solo
            para texto grande. Por eso el metal se usa en titulos y cifras de
-           24px o mas, nunca en texto corrido. La existencia de la tabla lleva
-           metal justo porque se subio a 24px; a los 15px de antes habria
-           quedado por debajo del limite.
+           24px o mas, nunca en texto corrido. Por eso las cifras de la tabla
+           de inventario NO llevan metal: van a 17px y quedarian por debajo del
+           limite, y a ochenta y siete renglones el metal ademas estorba para
+           recorrer la columna.
            ============================================================ */
         --metal-texto: linear-gradient(100deg,
           color-mix(in srgb, var(--acento) 82%, #000) 0%,
@@ -326,11 +327,11 @@
          El color plano se declara ANTES: si un navegador no soporta recortar el
          fondo al texto, se queda con el color y el titulo se lee igual. Al
          reves —transparente primero— el titulo desapareceria. */
-      h1, h2, .cifra-metal {
+      h1, h2 {
         color: var(--acento);
       }
       @supports (-webkit-background-clip: text) or (background-clip: text) {
-        h1, h2, .cifra-metal {
+        h1, h2 {
           background-image: var(--metal-texto);
           -webkit-background-clip: text;
           background-clip: text;
