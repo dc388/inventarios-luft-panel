@@ -5,34 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inventarios Luft · Administración</title>
     <style>
-      /* Paleta: azul de la marca como acento, madera para carpinteria. El rojo
-         y el verde SOLO significan rechazar y aprobar; si aparecieran en otro
-         sitio dejarian de querer decir eso.
+      /* ================================================================
+         Paleta oscura vintage.
 
-         Los mismos valores que el tema de las aplicaciones del telefono. Uno
-         solo, en los dos sitios: quien pasa del telefono al panel no deberia
-         sentir que cambia de sistema. */
+         La referencia no es una pantalla, es un objeto: un libro de cuentas
+         encuadernado en piel, en un despacho con poca luz. Fondo de espresso
+         —caliente, nunca negro puro ni azulado—, texto de papel envejecido, y
+         UN acento, que cambia con la division: dorado en carpinteria, el azul
+         de la marca en cancelaria.
+
+         Por que un acento y no varios: lo caro se reconoce por lo que se quita,
+         no por lo que se anade. Un tablero con seis colores compitiendo se lee
+         barato por mucho que cada color este bien elegido.
+
+         Ni el dorado ni el azul se parecen al rojo de rechazar ni al verde de
+         aprobar, y eso no es casualidad: esos dos colores SOLO significan eso.
+         El dia que alguien dude de si un boton aprueba o cancela, el problema
+         dejo de ser estetico.
+
+         Contrastes verificados sobre la superficie de las tarjetas: todos los
+         colores de texto pasan de 4.5:1.
+         ================================================================ */
       :root {
-        color-scheme: light;
-        --marca: #0a63d2;
-        --marca-oscuro: #0846a0;
-        --marca-suave: #e8f1fe;
-        --madera: #8a5a2b;
-        --tinta: #11151a;
-        --tinta-tenue: #565e6b;
-        --tinta-debil: #8b939f;
-        /* Fondo con una pizca de azul, no gris puro: un gris neutro junto a
-           superficies blancas con sombra se lee pardo, no limpio. */
-        --papel: #f2f4f8;
-        --superficie: #ffffff;
-        /* La linea insinua, no delimita: lo que separa es la profundidad. */
-        --linea: rgba(60, 60, 67, 0.12);
-        --aprobar: #0e7a4a;
-        --rechazar: #c0392b;
-        --aviso-fondo: #fdf4e3;
-        --aviso-linea: rgba(154, 103, 0, 0.22);
-        --aviso-texto: #9a6700;
-        --sombra-suave: 0 4px 14px rgba(11, 18, 32, 0.06);
+        color-scheme: dark;
+
+        /* --- Superficies, de mas hundida a mas elevada --- */
+        --papel: #15110d;
+        --superficie: #1f1913;
+        --superficie-alta: #26201a;
+
+        /* --- Tinta sobre papel envejecido --- */
+        --tinta: #f2e8d5;
+        --tinta-tenue: #b9a98f;
+        --tinta-debil: #9c8b72;
+
+        /* ============================================================
+           EL ACENTO CAMBIA CON LA DIVISION
+
+           Carpinteria va en dorado; cancelaria, en el azul de la marca.
+           Es la unica cosa que cambia entre las dos: el resto del sistema
+           —fondo, tinta, filetes, estados— es identico, para que nadie dude
+           de si esta mirando la misma plataforma.
+
+           Cuatro variables, no una, y la razon importa:
+
+             --acento          para TEXTO y filetes sobre el fondo oscuro
+             --acento-relleno  para RELLENOS (botones, pastilla activa)
+             --sobre-acento    el texto que va ENCIMA de ese relleno
+             --acento-suave    el tinte de fondo de las pastillas
+
+           El azul de la marca, #003366, es magnifico como relleno con texto
+           claro encima (10.4:1) e ILEGIBLE como texto sobre el fondo oscuro
+           (1.4:1, hace falta 4.5). Por eso el texto usa un azul aclarado del
+           mismo tono. Un color de marca no se cambia; se le busca el sitio
+           donde funciona.
+
+           Ojo con la asimetria: sobre dorado el texto va oscuro, y sobre azul
+           marino va claro. Fijar uno solo dejaria ilegible la mitad de los
+           botones.
+           ============================================================ */
+
+        /* Por omision, dorado. */
+        --acento: #c8a44d;
+        --acento-relleno: #c8a44d;
+        --acento-fuerte: #a88536;
+        --acento-suave: rgba(200, 164, 77, 0.12);
+        --sobre-acento: #15110d;
+
+        --madera: #c08552;
+
+        /* --- El filete. En oscuro la sombra casi no separa: lo que separa es
+               una linea calida de un pixel y un relleno un punto mas claro. --- */
+        --linea: rgba(242, 232, 213, 0.1);
+        --linea-fuerte: rgba(242, 232, 213, 0.17);
+
+        /* --- Estado. Nunca viajan solos: siempre con texto. --- */
+        --aprobar: #7fa05a;
+        --rechazar: #ce6b52;
+        --aviso-texto: #d9a441;
+        --aviso-fondo: rgba(217, 164, 65, 0.1);
+        --aviso-linea: rgba(217, 164, 65, 0.22);
+
+        /* Sombras calidas, con cuerpo de marron y no de azul. */
+        --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.4);
+        --sombra-media: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+        /* --- Tipografia ---
+           Una serif de alto contraste para titulos y cifras. Es lo que separa
+           una pantalla cara de una barata: la sans del sistema esta en todas
+           partes, una serif editorial no. Didot y Bodoni existen en Mac; en
+           Windows cae en Georgia, que sigue teniendo el mismo caracter.
+
+           El texto corrido y las tablas se quedan en la sans del sistema: una
+           serif en una tabla densa de codigos se lee peor, y aqui la legibilidad
+           manda sobre el gusto. */
+        --serif: 'Didot', 'Bodoni MT', 'Hoefler Text', Georgia, 'Times New Roman', serif;
+        --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+          'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+      }
+
+      /* ================================================================
+         LA DIVISION PONE EL METAL, LA SECCION LO MODULA
+
+         Dos ejes, y cada uno manda sobre una cosa distinta:
+
+           La DIVISION fija el relleno de los botones y el texto que va encima.
+           Es identidad de marca y no se mueve: el boton de aprobar se ve igual
+           en las cuatro secciones, porque es el mismo acto.
+
+           La SECCION cambia el tono del texto, los filetes y las pestanas,
+           dentro de la MISMA familia de color. Nunca se ven dos secciones a la
+           vez, asi que esto no produce un arcoiris: produce la sensacion de
+           cambiar de sala dentro de la misma casa.
+
+         Los ocho tonos estan verificados: todos pasan de 4.5:1 sobre la
+         superficie, y ninguno se acerca en tono al verde de aprobar (88°) ni al
+         rojo de rechazar (12°). Los dorados viven en 42-45° y los azules en
+         211-212°. Esa distancia no es casual: es lo que impide que un acento se
+         confunda con un estado.
+         ================================================================ */
+
+      /* --- Cancelaria: el azul de la marca --- */
+      :root[data-division='pvc'] {
+        --acento: #6ba3e5;
+        /* El azul de la marca, tal cual, donde de verdad luce: como relleno. */
+        --acento-relleno: #003366;
+        --acento-fuerte: #4e86c7;
+        --acento-suave: rgba(107, 163, 229, 0.13);
+        /* Sobre el marino, texto CLARO: 10.4:1. */
+        --sobre-acento: #f2e8d5;
+      }
+      :root[data-division='pvc'][data-seccion='alta'] {
+        --acento: #8fbdf0;
+        --acento-suave: rgba(143, 189, 240, 0.13);
+      }
+      :root[data-division='pvc'][data-seccion='salidas'] {
+        --acento: #4e86c7;
+        --acento-suave: rgba(78, 134, 199, 0.16);
+      }
+      :root[data-division='pvc'][data-seccion='productos'] {
+        --acento: #a8cdf5;
+        --acento-suave: rgba(168, 205, 245, 0.13);
+      }
+
+      /* --- Carpinteria: dorado --- */
+      :root[data-division='carpinteria'] {
+        --acento: #c8a44d;
+        --acento-relleno: #c8a44d;
+        --acento-fuerte: #a88536;
+        --acento-suave: rgba(200, 164, 77, 0.12);
+        /* Sobre el dorado, texto OSCURO: el claro daria 2:1. */
+        --sobre-acento: #15110d;
+      }
+      :root[data-division='carpinteria'][data-seccion='alta'] {
+        --acento: #d9bc72;
+        --acento-suave: rgba(217, 188, 114, 0.13);
+      }
+      :root[data-division='carpinteria'][data-seccion='salidas'] {
+        --acento: #b08f3e;
+        --acento-suave: rgba(176, 143, 62, 0.17);
+      }
+      :root[data-division='carpinteria'][data-seccion='productos'] {
+        --acento: #e0ce9a;
+        --acento-suave: rgba(224, 206, 154, 0.13);
+      }
+
+      /* El cambio de sala se hace despacio: si el color saltara de golpe se
+         sentiria como un parpadeo, no como un traslado. */
+      :root { transition: none; }
+      body, body * {
+        transition-property: color, background-color, border-color;
+        transition-duration: 0.45s;
+        transition-timing-function: ease;
       }
 
       * { box-sizing: border-box; }
@@ -43,34 +187,66 @@
         margin: 0;
         background: var(--papel);
         color: var(--tinta);
-        /* La fuente del sistema primero: en Mac y iPad da San Francisco, que
-           es la letra del lenguaje que estamos hablando. Segoe queda de
-           respaldo para Windows. */
-        font-family:
-          -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text",
-          "Segoe UI", system-ui, sans-serif;
+        font-family: var(--sans);
         font-size: 15px;
-        line-height: 1.5;
+        line-height: 1.55;
         letter-spacing: -0.006em;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Los titulos van apretados: es lo que les da el aire compacto de iOS. */
+      /* Los titulos van en serif, grandes y apretados. Es la voz de la marca:
+         donde antes habia una sans mas gruesa, ahora hay una letra con historia. */
       h1, h2, h3 {
-        letter-spacing: -0.022em;
+        font-family: var(--serif);
+        font-weight: 400;
+        letter-spacing: -0.02em;
         text-wrap: balance;
       }
 
-      /* Los digitos de las columnas de cantidades tienen que alinearse. */
-      .num { font-variant-numeric: tabular-nums; }
+      h1 { font-size: 34px; line-height: 1.12; margin: 0 0 6px; }
+      h2 { font-size: 25px; line-height: 1.18; margin: 0 0 4px; }
+      h3 { font-size: 19px; line-height: 1.25; margin: 0; }
 
-      :focus-visible {
-        outline: 2px solid var(--marca);
-        outline-offset: 2px;
-        border-radius: 8px;
+      /* Las cifras tambien en serif y con los digitos alineados: una columna de
+         cantidades que baila se lee como una hoja de calculo cualquiera. */
+      .num { font-variant-numeric: tabular-nums; }
+      .cifra {
+        font-family: var(--serif);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
       }
 
-      /* Quien pidio menos movimiento no deberia recibir ninguno. */
+      /* Mayusculas pequenas muy separadas. Es la firma tipografica del lujo:
+         cuesta nada y se reconoce al instante. */
+      .rotulo {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--tinta-debil);
+      }
+
+      /* El foco se marca con el acento de la division, no con el azul del
+         navegador. */
+      :focus-visible {
+        outline: 2px solid var(--acento);
+        outline-offset: 3px;
+        border-radius: 10px;
+      }
+
+      ::selection {
+        background: var(--acento-suave);
+        color: var(--tinta);
+      }
+
+      /* La barra de desplazamiento tambien es parte del objeto. */
+      * {
+        scrollbar-color: var(--linea-fuerte) transparent;
+        scrollbar-width: thin;
+      }
+
+      /* Nada se mueve de golpe: lo caro se abre despacio. */
       @media (prefers-reduced-motion: reduce) {
         * { transition: none !important; animation: none !important; }
       }
@@ -78,6 +254,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="app.js?v=6c3e84ebb1"></script>
+    <script src="app.js?v=27f39e87f4"></script>
   </body>
 </html>
