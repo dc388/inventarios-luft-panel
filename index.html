@@ -153,6 +153,11 @@
         --acento: #7fb6f2;
         --acento-suave: rgba(127, 182, 242, 0.14);
       }
+      /* Herramientas: mas frio y mas metalico que el resto, que es lo que son. */
+      :root[data-division='pvc'][data-seccion='herramientas'] {
+        --acento: #9ab8cf;
+        --acento-suave: rgba(154, 184, 207, 0.14);
+      }
 
       /* --- Carpinteria: dorado --- */
       :root[data-division='carpinteria'] {
@@ -179,6 +184,10 @@
       :root[data-division='carpinteria'][data-seccion='dia'] {
         --acento: #d4b25e;
         --acento-suave: rgba(212, 178, 94, 0.14);
+      }
+      :root[data-division='carpinteria'][data-seccion='herramientas'] {
+        --acento: #bfae86;
+        --acento-suave: rgba(191, 174, 134, 0.14);
       }
 
       /* El cambio de sala se hace despacio: si el color saltara de golpe se
@@ -447,6 +456,6 @@
         </span>
       </div>
     </noscript>
-    <script src="app.js?v=ec2f31c078"></script>
+    <script src="app.js?v=f75b5ca265"></script>
   </body>
 </html>
