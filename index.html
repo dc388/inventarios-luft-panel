@@ -433,6 +433,12 @@
 
       /* Las cifras tambien en serif y con los digitos alineados: una columna de
          cantidades que baila se lee como una hoja de calculo cualquiera. */
+      /* `.num` no la usa nadie: se quedo escrita y ninguna celda la lleva.
+         Por eso las columnas de cantidades seguian con los digitos de ancho
+         distinto pese a existir esta regla. Lo que de verdad lo arregla esta
+         mas abajo, aplicado a `td` y `th` directamente, que es donde estan las
+         cifras. Se deja aqui, sin uso, solo para que no vuelva a escribirse
+         creyendo que hace algo. */
       .num { font-variant-numeric: tabular-nums; }
       .cifra {
         font-family: var(--serif);
@@ -468,6 +474,50 @@
         scrollbar-color: var(--linea-fuerte) transparent;
         scrollbar-width: thin;
       }
+
+      /* ================================================================
+         LAS TABLAS
+
+         Van aqui y no en cada tabla porque son CINCO y tienen que leerse
+         igual. Una regla suelta en una de ellas es como empiezan a
+         parecerse solo de lejos.
+         ================================================================ */
+
+      /* Las cifras, con todos los digitos del mismo ancho.
+
+         Sin esto, una columna de existencias con 1240, 3, 0 y 12 queda
+         alineada por la derecha pero rota por dentro: el 1 ocupa menos que
+         el 8 y las unidades bailan de fila en fila. Es de esas cosas que no
+         se saben nombrar pero se notan; con el ancho fijo la columna se lee
+         de un vistazo y las cantidades se pueden COMPARAR sin leerlas. */
+      td, th, .cifra {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* La fila que se esta mirando.
+
+         Las filas son anchas -codigo, nombre, unidad, existencia, estado- y
+         seguir una hasta el final sin nada que la sostenga es facil de
+         perder, sobre todo en la pantalla ancha de oficina. Un realce muy
+         tenue basta: 1.15:1 contra la tarjeta. Se queda ahi a proposito,
+         porque lo que tiene que destacar de una tabla son los datos, no el
+         raton.
+
+         Comprobado que el texto sigue legible encima: la tinta debil -la mas
+         floja de las tres- da 4.68:1 sobre la fila realzada. */
+      tbody tr {
+        transition: background .18s ease;
+      }
+      tbody tr:hover {
+        background: rgba(242, 232, 213, 0.06);
+      }
+
+      /* La ultima linea de un parrafo, sin una palabra sola colgando.
+
+         Los titulos ya lo hacen con `balance` mas arriba; los parrafos no lo
+         hacian, y aqui importa porque cada pantalla lleva debajo del titulo
+         una frase que explica para que sirve. */
+      p { text-wrap: pretty; }
 
       /* Nada se mueve de golpe: lo caro se abre despacio. */
       @media (prefers-reduced-motion: reduce) {
