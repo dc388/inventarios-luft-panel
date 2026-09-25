@@ -164,16 +164,19 @@
   var esApple = /iPhone|iPad|iPod/.test(navigator.userAgent)
     || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
+  // Se esconde con estilo EN LINEA, no con el atributo «hidden»: la regla
+  // «section[hidden] { display: block }» -la que ensena las dos formas cuando
+  // no hay JavaScript- pisaria el atributo y no se escanderia nada.
   function mostrar(cual) {
-    iphone.hidden = cual !== 'iphone';
-    android.hidden = cual !== 'android';
+    iphone.style.display = cual === 'iphone' ? 'block' : 'none';
+    android.style.display = cual === 'android' ? 'block' : 'none';
     otro.hidden = false;
   }
   mostrar(esApple ? 'iphone' : 'android');
 
   document.getElementById('cambiar').addEventListener('click', function (e) {
     e.preventDefault();
-    mostrar(iphone.hidden ? 'iphone' : 'android');
+    mostrar(iphone.style.display === 'none' ? 'iphone' : 'android');
     window.scrollTo(0, 0);
   });
 })();
