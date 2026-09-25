@@ -57,6 +57,9 @@
     font-size: 13px; color: var(--tinta-tenue);
     text-align: center; margin-top: 32px; line-height: 1.5;
   }
+  /* Sin JavaScript se ensenan las DOS formas. Vale mas una pagina con de mas
+     que una vacia: el navegador de WhatsApp desactiva cosas sin avisar. */
+  section[hidden] { display: block; }
 </style>
 </head>
 <body>
@@ -64,36 +67,77 @@
   <div class="marca">INVENTARIOS LUFT</div>
   <h1>Instalar la aplicación</h1>
 
-  <div class="tarjeta">
-    <div class="quien">Cancelería</div>
-    <div class="cual">Luft PVC</div>
-    <a class="boton" href="../pvc/app.apk" download>Descargar</a>
-    <div class="peso">39 MB · Android</div>
-  </div>
+  <!-- Las DOS formas se pintan siempre y se ordenan con JavaScript.
+       Si se escondiera una con JavaScript y este fallara -el navegador de
+       WhatsApp hace cosas raras-, quedaria una pagina que no ofrece nada. Asi,
+       en el peor caso salen las dos y se lee cual toca. -->
 
-  <div class="tarjeta">
-    <div class="quien">Carpintería</div>
-    <div class="cual">Luft Wood</div>
-    <a class="boton madera" href="../wood/app.apk" download>Descargar</a>
-    <div class="peso">39 MB · Android</div>
-  </div>
+  <section id="iphone" hidden>
+    <div class="tarjeta">
+      <div class="quien">iPhone</div>
+      <div class="cual">Añadir a la pantalla de inicio</div>
+      <a class="boton" id="ir-pvc" href="../pvc/">Cancelería · Luft PVC</a>
+      <a class="boton madera" id="ir-wood" href="../wood/" style="margin-top:10px">Carpintería · Luft Wood</a>
+      <div class="peso">No se descarga nada · funciona sin señal</div>
+    </div>
 
-  <h2>Qué va a pasar</h2>
-  <ol>
-    <li>Al tocar <strong>Descargar</strong>, el teléfono avisa de que el archivo
-        «puede ser dañino». <strong>Es normal.</strong> La aplicación es de LUFT,
-        no viene de Play Store. Toca <strong>Descargar de todos modos</strong>.</li>
-    <li>Cuando termine, toca <strong>Abrir</strong>.</li>
-    <li>Android pide permiso para instalar desde esta aplicación. Se lo das
-        <strong>una sola vez</strong>: las siguientes actualizaciones ya no lo piden.</li>
-    <li>Toca <strong>Instalar</strong>. Listo.</li>
-  </ol>
+    <div class="nota">
+      <strong>Tiene que ser en Safari.</strong> Si abriste esto desde WhatsApp,
+      toca los tres puntos y elige <strong>Abrir en Safari</strong>. En Chrome no
+      aparece la opción de añadir a la pantalla.
+    </div>
 
-  <div class="nota">
-    <strong>Si tocaste el enlace dentro de WhatsApp y no pasó nada:</strong>
-    el navegador de WhatsApp bloquea estas descargas. Abre el menú de los tres
-    puntos y elige <strong>Abrir en Chrome</strong>.
-  </div>
+    <h2>Cómo se añade</h2>
+    <ol>
+      <li>Toca el botón de tu división, aquí arriba.</li>
+      <li>Abajo en la barra de Safari, toca el botón de <strong>compartir</strong>
+          — el cuadrito con la flecha hacia arriba.</li>
+      <li>Baja y elige <strong>Añadir a pantalla de inicio</strong>.</li>
+      <li>Toca <strong>Añadir</strong>. Ya tienes el icono, como cualquier app.</li>
+    </ol>
+
+    <div class="nota">
+      <strong>Ábrela siempre desde ese icono</strong>, no desde Safari. Es lo que
+      hace que funcione sin señal y que no se borre lo que captures.
+    </div>
+  </section>
+
+  <section id="android" hidden>
+    <div class="tarjeta">
+      <div class="quien">Cancelería</div>
+      <div class="cual">Luft PVC</div>
+      <a class="boton" href="../pvc/app.apk" download>Descargar</a>
+      <div class="peso">39 MB · Android</div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="quien">Carpintería</div>
+      <div class="cual">Luft Wood</div>
+      <a class="boton madera" href="../wood/app.apk" download>Descargar</a>
+      <div class="peso">39 MB · Android</div>
+    </div>
+
+    <h2>Qué va a pasar</h2>
+    <ol>
+      <li>Al tocar <strong>Descargar</strong>, el teléfono avisa de que el archivo
+          «puede ser dañino». <strong>Es normal.</strong> La aplicación es de LUFT,
+          no viene de Play Store. Toca <strong>Descargar de todos modos</strong>.</li>
+      <li>Cuando termine, toca <strong>Abrir</strong>.</li>
+      <li>Android pide permiso para instalar desde esta aplicación. Se lo das
+          <strong>una sola vez</strong>: las siguientes actualizaciones ya no lo piden.</li>
+      <li>Toca <strong>Instalar</strong>. Listo.</li>
+    </ol>
+
+    <div class="nota">
+      <strong>Si tocaste el enlace dentro de WhatsApp y no pasó nada:</strong>
+      el navegador de WhatsApp bloquea estas descargas. Abre el menú de los tres
+      puntos y elige <strong>Abrir en Chrome</strong>.
+    </div>
+  </section>
+
+  <p id="otro" class="pie" hidden>
+    <a href="#" id="cambiar" style="color:inherit">¿Tienes otro teléfono? Ver los pasos del otro</a>
+  </p>
 
   <h2>Al abrir la aplicación</h2>
   <p style="margin:0">
@@ -103,9 +147,37 @@
   </p>
 
   <div class="pie">
-    Instala las dos solo si trabajas en las dos divisiones.<br>
+    Instala solo la de tu división.<br>
     Cada una lleva su propio inventario.
   </div>
+</main>
+
+<script>
+(function () {
+  var iphone = document.getElementById('iphone');
+  var android = document.getElementById('android');
+  var otro = document.getElementById('otro');
+
+  // «MacIntel» con pantalla tactil es un iPad moderno, que se hace pasar por
+  // Mac. Sin eso, a un iPad le saldrian los pasos de Android y no hay forma de
+  // que funcionen.
+  var esApple = /iPhone|iPad|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  function mostrar(cual) {
+    iphone.hidden = cual !== 'iphone';
+    android.hidden = cual !== 'android';
+    otro.hidden = false;
+  }
+  mostrar(esApple ? 'iphone' : 'android');
+
+  document.getElementById('cambiar').addEventListener('click', function (e) {
+    e.preventDefault();
+    mostrar(iphone.hidden ? 'iphone' : 'android');
+    window.scrollTo(0, 0);
+  });
+})();
+</script>
 </main>
 </body>
 </html>
