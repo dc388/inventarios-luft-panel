@@ -44051,7 +44051,7 @@ ${fallo.stack ?? ""}`
         Bloque,
         {
           nombre: "Estados",
-          nota: "En pastilla, como en el hub: el color con significado al 15 % de fondo y ese mismo color, m\xE1s vivo, en el texto. Los cuatro son los de la empresa (--ok, --warn, --danger, --info): el relleno al 12 % y la tinta en su variante -ink, que es la que pasa de 4.5:1 sobre la tarjeta.",
+          nota: "En pastilla, como en el hub: Los cuatro son los de la empresa (--ok, --warn, --danger, --info): el relleno al 12 % y la tinta en su variante -ink, que es la que pasa de 4.5:1 sobre la tarjeta.",
           children: Object.keys(estados).map((e) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Insignia, { estado: e, children: e }, e))
         }
       ),
